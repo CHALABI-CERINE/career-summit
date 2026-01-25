@@ -21,7 +21,7 @@
 //
 // 5. Copier l'URL du déploiement et la coller ci-dessous:
 
-const GOOGLE_SCRIPT_URL = 'VOTRE_URL_GOOGLE_APPS_SCRIPT_ICI';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbRAvBUvEE-xUMwTFmzwODSHPY9X159KVUvCX9aoBrat-bx7Xblxa-Wei-gA8PDO4c2A/exec';
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
@@ -265,7 +265,7 @@ standForm.addEventListener('submit', async (e) => {
     
     try {
         // Send to Google Sheets
-        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'VOTRE_URL_GOOGLE_APPS_SCRIPT_ICI') {
+        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbzbRAvBUvEE-xUMwTFmzwODSHPY9X159KVUvCX9aoBrat-bx7Xblxa-Wei-gA8PDO4c2A/exec') {
             await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -329,7 +329,7 @@ studentForm.addEventListener('submit', async (e) => {
     
     try {
         // Send to Google Sheets
-        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'VOTRE_URL_GOOGLE_APPS_SCRIPT_ICI') {
+        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbzbRAvBUvEE-xUMwTFmzwODSHPY9X159KVUvCX9aoBrat-bx7Xblxa-Wei-gA8PDO4c2A/exec') {
             await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
