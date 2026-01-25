@@ -21,7 +21,7 @@
 //
 // 5. Copier l'URL du déploiement et la coller ci-dessous:
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbRAvBUvEE-xUMwTFmzwODSHPY9X159KVUvCX9aoBrat-bx7Xblxa-Wei-gA8PDO4c2A/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvXNXSHMLu5KU8lIpJMwd6yHcoVV6SHrjMXmvqpEkglFm9oHVeYRmIO33TMZdjEK1VDg/exec';
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
@@ -263,31 +263,25 @@ standForm.addEventListener('submit', async (e) => {
         message: document.getElementById('message-entreprise').value
     };
     
-    try {
-        // Send to Google Sheets
-        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbzbRAvBUvEE-xUMwTFmzwODSHPY9X159KVUvCX9aoBrat-bx7Xblxa-Wei-gA8PDO4c2A/exec') {
-            await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-        }
+  try {
+        // Envoi direct sans condition bloquante
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify(formData)
+        });
         
-        // Log to console for debugging
-        console.log('Entreprise Form Data:', formData);
-        
-        // Reset form
+        console.log('Entreprise Form Data envoyé:', formData);
         standForm.reset();
-        
-        // Show success modal
-        showModal('Votre demande de stand a été enregistrée avec succès. Les confirmations seront envoyées à partir du 1er février 2026.');
+        showModal('Votre demande de stand a été enregistrée avec succès.');
         
     } catch (error) {
         console.error('Error:', error);
-        showModal('Une erreur est survenue. Veuillez réessayer ou nous contacter directement.');
+        showModal('Une erreur est survenue.');
+    
     } finally {
         // Restore button
         submitBtn.disabled = false;
@@ -327,31 +321,24 @@ studentForm.addEventListener('submit', async (e) => {
         recherche: recherche.join(', ')
     };
     
-    try {
-        // Send to Google Sheets
-        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbzbRAvBUvEE-xUMwTFmzwODSHPY9X159KVUvCX9aoBrat-bx7Xblxa-Wei-gA8PDO4c2A/exec') {
-            await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-        }
+ try {
+        // Envoi direct sans condition bloquante
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify(formData)
+        });
         
-        // Log to console for debugging
-        console.log('Student Form Data:', formData);
-        
-        // Reset form
+        console.log('Student Form Data envoyé:', formData);
         studentForm.reset();
-        
-        // Show success modal
-        showModal('Votre inscription a été enregistrée avec succès. Nous vous attendons les 15 et 16 février 2026 !');
+        showModal('Votre inscription a été enregistrée avec succès.');
         
     } catch (error) {
         console.error('Error:', error);
-        showModal('Une erreur est survenue. Veuillez réessayer ou nous contacter directement.');
+        showModal('Une erreur est survenue.');
     } finally {
         // Restore button
         submitBtn.disabled = false;
