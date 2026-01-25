@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Summit 2026 | USTHB</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0a1628',
+                            800: '#0f1d32',
+                            700: '#162544',
+                            600: '#1e3055',
+                        },
+                        accent: '#0099cc',
+                        'accent-dark': '#007399',
+                        'accent-light': '#00bfff',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+        <script src="script.js"></script>
+        
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-navy-900">
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-accent backdrop-blur-lg border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center gap-3">
+                    <div class="w-30 h-12 flex items-center justify-center">
+                        <img src="img/Asset3.svg" alt="Logo CS PI" class="w-full h-full object-contain">
+                    </div>
+                    
+                </a>
+                
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#accueil" class="text-sm font-medium text-navy-700 hover:text-accent transition">Accueil</a>
+                    <a href="#apropos" class="text-sm font-medium text-navy-700 hover:text-accent transition">À Propos</a>
+                    <a href="#programme" class="text-sm font-medium text-navy-700 hover:text-accent transition">Programme</a>
+                    <a href="#entreprises" class="text-sm font-medium text-navy-700 hover:text-accent transition">Pourquoi?</a>
+                    <a href="#contact" class="text-sm font-medium text-navy-700 hover:text-accent transition">Contact</a>
+                </div>
+                
+                <!-- <div class="flex items-center gap-4">
+                    <a href="#participer" class="hidden sm:inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-bold text-sm px-6 py-3 rounded-full transition-all hover:scale-105">
+                        <i class="fas fa-ticket-alt"></i>
+                        Je Participe
+                    </a>
+                    <button id="mobile-btn" class="lg:hidden text-2xl text-navy-900">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div> -->
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100">
+            <div class="px-6 py-6 space-y-4">
+                <a href="#accueil" class="block text-navy-700 hover:text-accent py-2 font-medium">Accueil</a>
+                <a href="#apropos" class="block text-navy-700 hover:text-accent py-2 font-medium">À Propos</a>
+                <a href="#programme" class="block text-navy-700 hover:text-accent py-2 font-medium">Programme</a>
+                <a href="#entreprises" class="block text-navy-700 hover:text-accent py-2 font-medium">Entreprises</a>
+                <a href="#contact" class="block text-navy-700 hover:text-accent py-2 font-medium">Contact</a>
+                <a href="#participer" class="inline-flex items-center gap-2 bg-navy-900 text-white font-bold text-sm px-6 py-3 rounded-full mt-4">
+                    <i class="fas fa-ticket-alt"></i>
+                    Je Participe
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="accueil" class="min-h-screen flex items-center relative overflow-hidden bg-white">
+        <div class="absolute inset-0">
+            <div class="absolute top-20 right-20 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 left-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-gray-200 rounded-full"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-32 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center gap-3 bg-navy-900/5 border border-navy-900/10 rounded-full px-5 py-2 mb-8 animate-fade-in">
+                    <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                    <span class="text-sm text-navy-700 font-medium">15 - 16 Février 2026 - USTHB, Alger</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight animate-fade-in delay-100">
+                    CAREER<br>
+                    <span class="gradient-text">SUMMIT</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 animate-fade-in delay-200">
+                    Le salon de l'emploi universitaire de l'USTHB. 
+                    Connectez-vous avec <span class="text-navy-900 font-semibold">+30 entreprises</span> et lancez votre carrière.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in delay-300">
+                    <a href="#participer" class="btn-animated inline-flex items-center justify-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-bold px-8 py-4 rounded-full">
+                        <i class="fas fa-user-graduate"></i>
+                        Espace Étudiant
+                    </a>
+                    <a href="#reservation-stand" class="btn-animated inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-bold px-8 py-4 rounded-full">
+                        <i class="fas fa-building"></i>
+                        Espace Entreprise
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-8 max-w-lg mx-auto mb-16 animate-fade-in delay-400">
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-black text-navy-900">10K+</div>
+                        <div class="text-sm text-gray-500 mt-1">Étudiants</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-black text-navy-900">30+</div>
+                        <div class="text-sm text-gray-500 mt-1">Entreprises</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-black text-navy-900">2</div>
+                        <div class="text-sm text-gray-500 mt-1">Jours</div>
+                    </div>
+                </div>
+                
+                <div class="inline-flex items-center gap-3 sm:gap-6 bg-navy-900 rounded-2xl p-4 sm:p-6 shadow-2xl">
+                    <div class="text-center px-3 sm:px-5">
+                        <div id="days" class="text-2xl sm:text-4xl font-black text-white">00</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Jours</div>
+                    </div>
+                    <div class="text-xl sm:text-2xl text-accent font-bold">:</div>
+                    <div class="text-center px-3 sm:px-5">
+                        <div id="hours" class="text-2xl sm:text-4xl font-black text-white">00</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Heures</div>
+                    </div>
+                    <div class="text-xl sm:text-2xl text-accent font-bold">:</div>
+                    <div class="text-center px-3 sm:px-5">
+                        <div id="minutes" class="text-2xl sm:text-4xl font-black text-white">00</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Min</div>
+                    </div>
+                    <div class="text-xl sm:text-2xl text-accent font-bold">:</div>
+                    <div class="text-center px-3 sm:px-5">
+                        <div id="seconds" class="text-2xl sm:text-4xl font-black text-white">00</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Sec</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-accent text-xl"></i>
+        </div>
+    </section>
+
+    <section id="apropos" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block text-accent text-sm font-bold uppercase tracking-widest mb-4">À Propos</span>
+                <h2 class="text-4xl md:text-5xl font-black text-navy-900">
+                    Qu'est-ce que le <span class="gradient-text">Career Summit</span> ?
+                </h2>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-navy-900 rounded-3xl p-8 md:p-10 text-white">
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Le <span class="text-white font-semibold">CAREER SUMMIT</span> est un salon de l'emploi universitaire dédié à l'insertion professionnelle des étudiants de l'USTHB.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Il vise à faciliter la rencontre directe entre les étudiants universitaires et les entreprises, dans un cadre structuré et professionnel.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Le CAREER SUMMIT constitue une plateforme d'échange, de recrutement et de networking, favorisant une transition fluide entre l'université et le monde professionnel.
+                    </p>
+                    
+                    <div class="flex items-center gap-4 mt-8 pt-8 border-t border-white/10">
+                        <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
+                            <i class="fas fa-calendar text-accent"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-400">Date de l'événement</div>
+                            <div class="font-bold">15 - 16 Février 2026</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="card-lift bg-white border-2 border-gray-100 rounded-2xl p-6 hover:border-accent/30">
+                        <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-5">
+                            <i class="fas fa-user-graduate text-accent text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-navy-900">Master 2</h3>
+                        <p class="text-gray-500 text-sm">Fin d'études, insertion professionnelle</p>
+                    </div>
+                    
+                    <div class="card-lift bg-white border-2 border-gray-100 rounded-2xl p-6 hover:border-accent/30">
+                        <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-5">
+                            <i class="fas fa-book-reader text-accent text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-navy-900">Licence</h3>
+                        <p class="text-gray-500 text-sm">Stages, orientation professionnelle</p>
+                    </div>
+                    
+                    <div class="card-lift bg-white border-2 border-gray-100 rounded-2xl p-6 hover:border-accent/30">
+                        <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-5">
+                            <i class="fas fa-handshake text-accent text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-navy-900">Networking</h3>
+                        <p class="text-gray-500 text-sm">Échanges directs avec les recruteurs</p>
+                    </div>
+                    
+                    <div class="card-lift bg-white border-2 border-gray-100 rounded-2xl p-6 hover:border-accent/30">
+                        <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-5">
+                            <i class="fas fa-briefcase text-accent text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-navy-900">Opportunités</h3>
+                        <p class="text-gray-500 text-sm">Stages et emplois disponibles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block text-accent text-sm font-bold uppercase tracking-widest mb-4">Objectifs</span>
+                <h2 class="text-4xl md:text-5xl font-black text-navy-900">Pourquoi Participer ?</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-lift group text-center p-8 rounded-3xl bg-white border-2 border-gray-100 hover:border-accent/30">
+                    <div class="w-20 h-20 bg-navy-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 text-navy-900">Renforcer l'employabilité</h3>
+                    <p class="text-gray-500 text-sm">Développez vos compétences et préparez votre entrée sur le marché.</p>
+                </div>
+                
+                <div class="card-lift group text-center p-8 rounded-3xl bg-white border-2 border-gray-100 hover:border-accent/30">
+                    <div class="w-20 h-20 bg-navy-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-link text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 text-navy-900">Créer des liens</h3>
+                    <p class="text-gray-500 text-sm">Établissez un lien direct et durable avec les entreprises.</p>
+                </div>
+                
+                <div class="card-lift group text-center p-8 rounded-3xl bg-white border-2 border-gray-100 hover:border-accent/30">
+                    <div class="w-20 h-20 bg-navy-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-door-open text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 text-navy-900">Faciliter l'accès</h3>
+                    <p class="text-gray-500 text-sm">Accédez facilement aux stages et opportunités professionnelles.</p>
+                </div>
+                
+                <div class="card-lift group text-center p-8 rounded-3xl bg-white border-2 border-gray-100 hover:border-accent/30">
+                    <div class="w-20 h-20 bg-navy-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 text-navy-900">Valoriser l'université</h3>
+                    <p class="text-gray-500 text-sm">Valorisez l'image de l'USTHB auprès des partenaires.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programme" class="py-24 bg-navy-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block text-accent text-sm font-bold uppercase tracking-widest mb-4">Agenda</span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Programme Prévisionnel</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Le programme est susceptible d'être ajusté. Les entreprises participantes pourront intervenir et animer des panels de discussion.</p>
+            </div>
+            
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex bg-navy-800 rounded-full p-1.5">
+                    <button class="tab-btn active bg-accent text-navy-900 px-6 sm:px-8 py-3 rounded-full text-sm font-bold transition-all" data-day="1">
+                        Jour 1 - 15 Février
+                    </button>
+                    <button class="tab-btn text-gray-400 px-6 sm:px-8 py-3 rounded-full text-sm font-bold transition-all" data-day="2">
+                        Jour 2 - 16 Février
+                    </button>
+                </div>
+            </div>
+            
+            <div id="day-1" class="programme-day">
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative">
+                        <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent-light to-accent"></div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12 text-right">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6 inline-block">
+                                    <span class="text-accent font-bold text-lg">08h30 - 09h30</span>
+                                    <h4 class="text-white font-bold mt-2">Accueil des participants et des entreprises</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Enregistrement et distribution des badges</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:hidden ml-16 programme-card bg-navy-800 rounded-2xl p-6">
+                                <span class="text-accent font-bold">08h30 - 09h30</span>
+                                <h4 class="text-white font-bold mt-2">Accueil des participants</h4>
+                            </div>
+                            <div class="hidden md:block w-1/2 pl-12"></div>
+                        </div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12"></div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:w-1/2 md:pl-12 ml-16 md:ml-0">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6">
+                                    <span class="text-accent font-bold text-lg">09h30 - 10h00</span>
+                                    <h4 class="text-white font-bold mt-2">Cérémonie d'ouverture</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Discours officiels et présentation</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12 text-right">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6 inline-block">
+                                    <span class="text-accent font-bold text-lg">10h00 - 11h30</span>
+                                    <h4 class="text-white font-bold mt-2">Rencontres entreprises-étudiants</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Visite des stands et échanges</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:hidden ml-16 programme-card bg-navy-800 rounded-2xl p-6">
+                                <span class="text-accent font-bold">10h00 - 11h30</span>
+                                <h4 class="text-white font-bold mt-2">Rencontres entreprises-étudiants</h4>
+                            </div>
+                            <div class="hidden md:block w-1/2 pl-12"></div>
+                        </div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12"></div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:w-1/2 md:pl-12 ml-16 md:ml-0">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6">
+                                    <span class="text-accent font-bold text-lg">11h30 - 12h30</span>
+                                    <h4 class="text-white font-bold mt-2">Panel de discussion</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Animé par les entreprises partenaires</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12 text-right">
+                                <div class="programme-card bg-navy-800/50 rounded-2xl p-6 inline-block">
+                                    <span class="text-gray-400 font-bold text-lg">12h30 - 13h30</span>
+                                    <h4 class="text-white font-bold mt-2">Pause déjeuner</h4>
+                                </div>
+                            </div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-500 rounded-full timeline-dot z-10"></div>
+                            <div class="md:hidden ml-16 programme-card bg-navy-800/50 rounded-2xl p-6">
+                                <span class="text-gray-400 font-bold">12h30 - 13h30</span>
+                                <h4 class="text-white font-bold mt-2">Pause déjeuner</h4>
+                            </div>
+                            <div class="hidden md:block w-1/2 pl-12"></div>
+                        </div>
+
+                         <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12"></div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:w-1/2 md:pl-12 ml-16 md:ml-0">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6">
+                                    <span class="text-accent font-bold text-lg">13h30 - 14h30</span>
+                                    <h4 class="text-white font-bold mt-2">Ateliers pratiques</h4>
+                                    <p class="text-gray-400 text-sm mt-1">CV, entretien, personal branding</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12 text-right">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6 inline-block">
+                                    <span class="text-accent font-bold text-lg">14h30 - 15h30</span>
+                                    <h4 class="text-white font-bold mt-2">Entretiens informels et networking</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Échanges libres avec les recruteurs</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:hidden ml-16 programme-card bg-navy-800 rounded-2xl p-6">
+                                <span class="text-accent font-bold">14h30 - 15h30</span>
+                                <h4 class="text-white font-bold mt-2">Networking</h4>
+                            </div>
+                            <div class="hidden md:block w-1/2 pl-12"></div>
+                        </div>
+
+                        <div class="timeline-item relative flex items-center">
+                            <div class="hidden md:block w-1/2 pr-12"></div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:w-1/2 md:pl-12 ml-16 md:ml-0">
+                                <div class="programme-card bg-gradient-to-r from-accent/20 to-accent-light/20 border border-accent/30 rounded-2xl p-6">
+                                    <span class="text-accent font-bold text-lg">15h30 - 16h00</span>
+                                    <h4 class="text-white font-bold mt-2">Fin de la première journée</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="day-2" class="programme-day hidden">
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative">
+                        <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent-light to-accent"></div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12 text-right">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6 inline-block">
+                                    <span class="text-accent font-bold text-lg">08h30 - 09h30</span>
+                                    <h4 class="text-white font-bold mt-2">Accueil des participants</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Ouverture des portes</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:hidden ml-16 programme-card bg-navy-800 rounded-2xl p-6">
+                                <span class="text-accent font-bold">08h30 - 09h30</span>
+                                <h4 class="text-white font-bold mt-2">Accueil des participants</h4>
+                            </div>
+                            <div class="hidden md:block w-1/2 pl-12"></div>
+                        </div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12"></div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:w-1/2 md:pl-12 ml-16 md:ml-0">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6">
+                                    <span class="text-accent font-bold text-lg">09h30 - 11h30</span>
+                                    <h4 class="text-white font-bold mt-2">Rencontres entreprises-étudiants</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Sessions de recrutement</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12 text-right">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6 inline-block">
+                                    <span class="text-accent font-bold text-lg">11h30 - 12h00</span>
+                                    <h4 class="text-white font-bold mt-2">Panel de discussion</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Thématiques sectorielles</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:hidden ml-16 programme-card bg-navy-800 rounded-2xl p-6">
+                                <span class="text-accent font-bold">11h30 - 12h00</span>
+                                <h4 class="text-white font-bold mt-2">Panel de discussion</h4>
+                            </div>
+                            <div class="hidden md:block w-1/2 pl-12"></div>
+                        </div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12"></div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-500 rounded-full timeline-dot z-10"></div>
+                            <div class="md:w-1/2 md:pl-12 ml-16 md:ml-0">
+                                <div class="programme-card bg-navy-800/50 rounded-2xl p-6">
+                                    <span class="text-gray-400 font-bold text-lg">12h30 - 13h30</span>
+                                    <h4 class="text-white font-bold mt-2">Pause déjeuner</h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12 text-right">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6 inline-block">
+                                    <span class="text-accent font-bold text-lg">13h30 - 14h00</span>
+                                    <h4 class="text-white font-bold mt-2">Ateliers pratiques</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Sessions spécialisées</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:hidden ml-16 programme-card bg-navy-800 rounded-2xl p-6">
+                                <span class="text-accent font-bold">13h30 - 14h00</span>
+                                <h4 class="text-white font-bold mt-2">Ateliers pratiques</h4>
+                            </div>
+                            <div class="hidden md:block w-1/2 pl-12"></div>
+                        </div>
+                        
+                         <div class="timeline-item relative flex items-center mb-8">
+                            <div class="hidden md:block w-1/2 pr-12"></div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:w-1/2 md:pl-12 ml-16 md:ml-0">
+                                <div class="programme-card bg-navy-800 rounded-2xl p-6">
+                                    <span class="text-accent font-bold text-lg">14h30 - 15h00</span>
+                                    <h4 class="text-white font-bold mt-2">Entretiens informels et networking</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Dernières opportunités d'échange</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item relative flex items-center">
+                            <div class="hidden md:block w-1/2 pr-12 text-right">
+                                <div class="programme-card bg-gradient-to-r from-accent/20 to-accent-light/20 border border-accent/30 rounded-2xl p-6 inline-block">
+                                    <span class="text-accent font-bold text-lg">15h30 - 16h00</span>
+                                    <h4 class="text-white font-bold mt-2">Cérémonie de clôture</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Remerciements et fin de l'événement</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full timeline-dot z-10"></div>
+                            <div class="md:hidden ml-16 programme-card bg-gradient-to-r from-accent/20 to-accent-light/20 border border-accent/30 rounded-2xl p-6">
+                                <span class="text-accent font-bold">15h30 - 16h00</span>
+                                <h4 class="text-white font-bold mt-2">Cérémonie de clôture</h4>
+                            </div>
+                            <div class="hidden md:block w-1/2 pl-12"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="entreprises" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block text-accent text-sm font-bold uppercase tracking-widest mb-4">Entreprises</span>
+                <h2 class="text-4xl md:text-5xl font-black text-navy-900 mb-4">Pourquoi Participer au Career Summit ?</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="card-lift bg-gray-50 border-2 border-gray-100 rounded-2xl p-8 text-center hover:border-accent/30">
+                    <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-users text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-navy-900">Vivier de Talents</h3>
+                    <p class="text-gray-500 text-sm">Accédez à +10,000 jeunes talents universitaires.</p>
+                </div>
+                
+                <div class="card-lift bg-gray-50 border-2 border-gray-100 rounded-2xl p-8 text-center hover:border-accent/30">
+                    <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-search text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-navy-900">Recrutement Direct</h3>
+                    <p class="text-gray-500 text-sm">Identifiez des stagiaires et futurs collaborateurs.</p>
+                </div>
+                
+                <div class="card-lift bg-gray-50 border-2 border-gray-100 rounded-2xl p-8 text-center hover:border-accent/30">
+                    <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-briefcase text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-navy-900">Profils Qualifiés</h3>
+                    <p class="text-gray-500 text-sm">Rencontrez des profils motivés et qualifiés.</p>
+                </div>
+                
+                <div class="card-lift bg-gray-50 border-2 border-gray-100 rounded-2xl p-8 text-center hover:border-accent/30">
+                    <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-award text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-navy-900">Marque Employeur</h3>
+                    <p class="text-gray-500 text-sm">Renforcez votre visibilité et votre image.</p>
+                </div>
+            </div>
+            
+            <div class="bg-navy-900 rounded-3xl p-8 md:p-12">
+                <h3 class="text-2xl font-bold text-center mb-10 text-white">Format de Participation</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-store text-accent"></i>
+                        </div>
+                        <span class="text-sm text-gray-300">Stand dédié à l'entreprise</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-comments text-accent"></i>
+                        </div>
+                        <span class="text-sm text-gray-300">Rencontres directes avec les étudiants</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-file-alt text-accent"></i>
+                        </div>
+                        <span class="text-sm text-gray-300">Réception et collecte de CV</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-microphone text-accent"></i>
+                        </div>
+                        <span class="text-sm text-gray-300">Animation de panels</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservation-stand" class="py-24 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="inline-block text-accent text-sm font-bold uppercase tracking-widest mb-4">Entreprises</span>
+                <h2 class="text-4xl md:text-5xl font-black text-navy-900 mb-4">Réserver Votre Stand</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">Participez au Career Summit 2026 et rencontrez les meilleurs talents universitaires.</p>
+            </div>
+            
+            <form id="stand-form" class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100">
+                <div class="bg-accent/10 border border-accent/20 rounded-xl p-4 mb-8 flex items-start gap-3">
+                    <i class="fas fa-info-circle text-accent mt-0.5"></i>
+                    <p class="text-sm text-navy-800">Les confirmations de participation seront envoyées <strong>à partir du 1er février 2026</strong>. Notre équipe vous contactera pour finaliser votre réservation.</p>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="pb-8 border-b border-gray-100">
+                        <h3 class="text-lg font-bold text-navy-900 mb-6 flex items-center gap-3">
+                            <span class="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                            Informations de l'Entreprise
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nom de l'entreprise <span class="text-red-500">*</span></label>
+                                <input type="text" id="entreprise" name="entreprise" required class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-5 py-4 text-navy-900 focus:border-accent focus:bg-white focus:outline-none transition-all" placeholder="Votre entreprise">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Secteur d'activité</label>
+                                <input type="text" id="secteur" name="secteur" class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-5 py-4 text-navy-900 focus:border-accent focus:bg-white focus:outline-none transition-all" placeholder="Ex: IT, Finance, Industrie...">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pb-8 border-b border-gray-100">
+                        <h3 class="text-lg font-bold text-navy-900 mb-6 flex items-center gap-3">
+                            <span class="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                            Représentant de l'Entreprise
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nom complet <span class="text-red-500">*</span></label>
+                                <input type="text" id="representant" name="representant" required class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-5 py-4 text-navy-900 focus:border-accent focus:bg-white focus:outline-none transition-all" placeholder="Nom du représentant">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Fonction / Poste <span class="text-red-500">*</span></label>
+                                <input type="text" id="fonction" name="fonction" required class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-5 py-4 text-navy-900 focus:border-accent focus:bg-white focus:outline-none transition-all" placeholder="Votre fonction">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Adresse email <span class="text-red-500">*</span></label>
+                                <input type="email" id="email-entreprise" name="email" required class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-5 py-4 text-navy-900 focus:border-accent focus:bg-white focus:outline-none transition-all" placeholder="email@entreprise.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Numéro de téléphone <span class="text-red-500">*</span></label>
+                                <input type="tel" id="telephone-entreprise" name="telephone" required class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-5 py-4 text-navy-900 focus:border-accent focus:bg-white focus:outline-none transition-all" placeholder="0XXX XX XX XX">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pb-8 border-b border-gray-100">
+                        <h3 class="text-lg font-bold text-navy-900 mb-6 flex items-center gap-3">
+                            <span class="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                            Type de Participation
+                        </h3>
+                        
+                        <p class="text-gray-500 mb-6">Vous souhaitez participer en tant que :</p>
+                        
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="participation" value="sponsor" class="hidden peer" required>
+                                <div class="border-2 border-gray-200 rounded-xl p-5 text-center transition-all peer-checked:border-accent peer-checked:bg-accent/5 hover:border-gray-300">
+                                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-star text-accent text-xl"></i>
+                                    </div>
+                                    <span class="font-bold text-navy-900">Sponsor</span>
+                                    <p class="text-xs text-gray-500 mt-1">Visibilité maximale</p>
+                                </div>
+                            </label>
+                            
+                            <label class="cursor-pointer">
+                                <input type="radio" name="participation" value="exposant" class="hidden peer">
+                                <div class="border-2 border-gray-200 rounded-xl p-5 text-center transition-all peer-checked:border-accent peer-checked:bg-accent/5 hover:border-gray-300">
+                                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-store text-accent text-xl"></i>
+                                    </div>
+                                    <span class="font-bold text-navy-900">Exposant</span>
+                                    <p class="text-xs text-gray-500 mt-1">Stand entreprise</p>
+                                </div>
+                            </label>
+                            
+                            <label class="cursor-pointer">
+                                <input type="radio" name="participation" value="les_deux" class="hidden peer">
+                                <div class="border-2 border-gray-200 rounded-xl p-5 text-center transition-all peer-checked:border-accent peer-checked:bg-accent/5 hover:border-gray-300">
+                                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-crown text-accent text-xl"></i>
+                                    </div>
+                                    <span class="font-bold text-navy-900">Les deux</span>
+                                    <p class="text-xs text-gray-500 mt-1">Sponsor + Exposant</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="pb-8 border-b border-gray-100">
+                        <h3 class="text-lg font-bold text-navy-900 mb-6 flex items-center gap-3">
+                            <span class="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+                            Format de CV Préféré
+                        </h3>
+                        
+                        <p class="text-gray-500 mb-6">Quel format de CV souhaitez-vous recevoir des candidats ?</p>
+                        
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="cv_format" value="papier" class="hidden peer" required>
+                                <div class="border-2 border-gray-200 rounded-xl p-5 text-center transition-all peer-checked:border-accent peer-checked:bg-accent/5 hover:border-gray-300">
+                                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-file-alt text-accent text-xl"></i>
+                                    </div>
+                                    <span class="font-bold text-navy-900">Papier</span>
+                                    <p class="text-xs text-gray-500 mt-1">CV imprimés</p>
+                                </div>
+                            </label>
+                            
+                            <label class="cursor-pointer">
+                                <input type="radio" name="cv_format" value="electronique" class="hidden peer">
+                                <div class="border-2 border-gray-200 rounded-xl p-5 text-center transition-all peer-checked:border-accent peer-checked:bg-accent/5 hover:border-gray-300">
+                                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-laptop text-accent text-xl"></i>
+                                    </div>
+                                    <span class="font-bold text-navy-900">Électronique</span>
+                                    <p class="text-xs text-gray-500 mt-1">CV numériques (PDF)</p>
+                                </div>
+                            </label>
+                            
+                            <label class="cursor-pointer">
+                                <input type="radio" name="cv_format" value="les_deux" class="hidden peer">
+                                <div class="border-2 border-gray-200 rounded-xl p-5 text-center transition-all peer-checked:border-accent peer-checked:bg-accent/5 hover:border-gray-300">
+                                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-copy text-accent text-xl"></i>
+                                    </div>
+                                    <span class="font-bold text-navy-900">Les deux</span>
+                                    <p class="text-xs text-gray-500 mt-1">Papier + Électronique</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Message ou demande particulière</label>
+                        <textarea id="message-entreprise" name="message" rows="4" class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-5 py-4 text-navy-900 focus:border-accent focus:bg-white focus:outline-none resize-none transition-all" placeholder="Entrez votre message ici"></textarea>
+                    </div>
+
+                    <div class="pt-6">
+                        <button type="submit" id="submit-entreprise" class="btn-animated w-full inline-flex items-center justify-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-xl shadow-navy-900/10">
+                            <i class="fas fa-paper-plane"></i>
+                            Envoyer la demande
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="contact" class="mt-24 space-y-8">
+          
+                </div>
+
+                <div class="bg-white border-2 border-gray-100 rounded-3xl p-8">
+                    <h3 class="text-xl font-bold text-navy-900 mb-6">Contacts</h3>
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="https://www.facebook.com/projectinitiativeclub/" target="_blank" class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-navy-900 hover:bg-accent hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/project.initiative.usthb/" target="_blank" class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-navy-900 hover:bg-accent hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/project-initiative-club/posts/?feedView=all" target="_blank" class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-navy-900 hover:bg-accent hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://linktr.ee/CareerSummit2025" target="_blank" class="px-4 h-12 rounded-xl bg-navy-900 text-white flex items-center justify-center gap-2 font-bold hover:bg-green-600 transition">
+                            <i class="fas fa-link"></i> Linktree
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">projectinitiativeclub@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer bg-[#020617] text-white pt-[60px] pb-[30px] mt-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+                <div class="footer-brand">
+                    <div class="flex items-center gap-3 mb-4">
+                         <div class="w-20 h-20 bg-white/10 rounded-xl flex items-center justify-center overflow-hidden p-1">
+                             <img src="/img/logo-club.png" alt="Logo" class="w-full h-full object-contain">
+                        </div>
+                        <span class="font-bold text-lg">Project Initiative</span>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="text-white font-bold text-base mb-5">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="text-gray-400 text-sm hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="#apropos" class="text-gray-400 text-sm hover:text-white transition-colors">À Propos</a></li>
+                        <li><a href="#programme" class="text-gray-400 text-sm hover:text-white transition-colors">Programme</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="text-white font-bold text-base mb-5">Liens Utiles</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://linktr.ee/CareerSummit2025" target="_blank" class="text-gray-400 text-sm hover:text-white transition-colors">Linktree</a></li>
+                        <li><a href="https://www.instagram.com/project.initiative.usthb/" target="_blank" class="text-gray-400 text-sm hover:text-white transition-colors">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com/company/project-initiative-club" target="_blank" class="text-gray-400 text-sm hover:text-white transition-colors">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="text-white font-bold text-base mb-5">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400 text-sm">USTHB, Alger</li>
+                        <li class="text-gray-400 text-sm">projectinitiativeclub@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom border-t border-gray-800 pt-8 text-center">
+                <p class="text-sm text-gray-500">© 2026 Project Initiative Club. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
