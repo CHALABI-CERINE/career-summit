@@ -75,6 +75,7 @@
         .timeline-dot {
             transform: scale(0);
             transition: transform 0.4s ease;
+            position: absolute;
         }
         
         .timeline-dot.visible {
@@ -144,7 +145,6 @@
         }
 
 /* =========================================
-   FIXED CSS CODE BELOW
    ========================================= */
 
 /* ===== FOOTER ===== */
@@ -332,3 +332,54 @@
         font-size: 20px;
     }
 }
+
+
+/* //// RESOLUTION PHONE  */
+
+@media (max-width: 400px) {
+    /* Hero (section #accueil) plus compact et sans gros cercle qui déborde */
+    #accueil {
+        padding-top: 120px;
+        padding-bottom: 56px;
+    }
+
+    #hero-ring {
+        display: none;
+    }
+
+    #accueil h1 {
+        font-size: 2.4rem;
+        line-height: 1.1;
+    }
+
+    #accueil p {
+        font-size: 0.95rem;
+    }
+
+    /* Bouton / CTA */
+    #accueil .btn-animated {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Bloc stats (10K+, 30+, 2 jours) */
+    #accueil .grid {
+        gap: 1.5rem;
+    }
+
+    /* Countdown (Jours / Heures / Min / Sec) bien centré et sans décalage */
+    #accueil .inline-flex {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #accueil .inline-flex > div {
+        min-width: 64px;
+    }
+
+    #accueil .inline-flex .text-2xl,
+    #accueil .inline-flex .text-4xl {
+        font-size: 1.5rem;
+    }
+}
+
