@@ -372,6 +372,7 @@
         flex-wrap: wrap;
         justify-content: center;
     }
+#accueil
 
     #accueil .inline-flex > div {
         min-width: 64px;
