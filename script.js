@@ -1,27 +1,6 @@
-// =====================================================
-// CAREER SUMMIT 2026 - JavaScript
-// =====================================================
-// REMINDER: Les données des formulaires seront envoyées 
-// vers Google Sheets comme base de données.
-// Voir les instructions de configuration ci-dessous.
-// =====================================================
 
-// ===== CONFIGURATION GOOGLE SHEETS =====
-// Pour connecter les formulaires à Google Sheets:
-// 
-// 1. Créer un nouveau Google Sheet avec 2 onglets:
-//    - "Entreprises" (colonnes: Timestamp, Entreprise, Secteur, Représentant, Fonction, Email, Téléphone, Participation, Format CV, Message)
-//    - "Étudiants" (colonnes: Timestamp, Nom, Matricule, Email, Téléphone, Niveau, Filière, Recherche)
-//
-// 2. Aller dans Extensions > Apps Script
-//
-// 3. Coller le code Google Apps Script (voir fichier google-apps-script.js)
-//
-// 4. Déployer comme Web App (Exécuter en tant que: Moi, Accès: Tout le monde)
-//
-// 5. Copier l'URL du déploiement et la coller ci-dessous:
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvXNXSHMLu5KU8lIpJMwd6yHcoVV6SHrjMXmvqpEkglFm9oHVeYRmIO33TMZdjEK1VDg/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwQJHVOzHtno8oVwZxXTnCpgzphUckctq5rp85rzQgR4ftHW7qBhHWw3C8CPOE0l1ukAQ/exec';
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
@@ -290,62 +269,496 @@ standForm.addEventListener('submit', async (e) => {
 });
 
 // ===== FORM SUBMISSION - ÉTUDIANTS =====
-const studentForm = document.getElementById('student-form');
+const studentForm = document.getElementById('studentForm'); // Changed ID
 
-studentForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const submitBtn = document.getElementById('submit-etudiant');
-    const originalContent = submitBtn.innerHTML;
-    
-    // Show loading state
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Envoi en cours...</span>';
-    
-    // Collect recherche checkboxes
-    const recherche = [];
-    document.querySelectorAll('input[name="recherche"]:checked').forEach(cb => {
-        recherche.push(cb.value);
+if (studentForm) {
+    studentForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Validate required fields
+        if (!validateStudentForm(studentForm)) {
+            showMessage('Veuillez corriger les erreurs dans le formulaire.', 'error');
+            return;
+        }
+        
+        // Check CV (either file upload or link required)
+        const cvFile = selectedCVFile;
+        const cvLink = document.getElementById('cvLink')?.value.trim() || '';
+        
+        if (!cvFile && !cvLink) {
+            showMessage('Veuillez télécharger votre CV ou fournir un lien vers votre CV.', 'error');
+            document.getElementById('cv')?.focus();
+            return;
+        }
+        
+        const submitBtn = document.getElementById('submitBtn');
+        const submitBtnText = document.getElementById('submitBtnText');
+        const originalContent = submitBtnText.textContent;
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtnText.textContent = 'Envoi en cours...';
+        submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+        
+        try {
+            // Prepare form data
+            const formData = await prepareStudentFormData(studentForm, cvFile, cvLink);
+            
+            // Submit to Google Apps Script
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            console.log('Student Form Data envoyé:', formData);
+            
+            // Success
+            showMessage('✅ Inscription réussie! Merci pour votre participation. Vous recevrez une confirmation par email.', 'success');
+            studentForm.reset();
+            removeCV();
+            
+            // Also show modal for consistency
+            showModal('Votre inscription a été enregistrée avec succès.');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+        } catch (error) {
+            console.error('Error:', error);
+            showMessage('❌ Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter.', 'error');
+            showModal('Une erreur est survenue.');
+        } finally {
+            // Restore button
+            submitBtn.disabled = false;
+            submitBtnText.textContent = originalContent;
+            submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+        }
     });
+}
+// ===== CV UPLOAD HANDLING =====
+let selectedCVFile = null;
+
+// Initialize CV upload when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    const cvInput = document.getElementById('cv');
+    const removeCvBtn = document.getElementById('removeCv');
     
-    // Collect form data
-    const formData = {
-        type: 'etudiant',
-        timestamp: new Date().toLocaleString('fr-FR'),
-        nom: document.getElementById('nom-etudiant').value,
-        matricule: document.getElementById('matricule').value,
-        email: document.getElementById('email-etudiant').value,
-        telephone: document.getElementById('telephone-etudiant').value,
-        niveau: document.getElementById('niveau').value,
-        filiere: document.getElementById('filiere').value,
-        recherche: recherche.join(', ')
-    };
-    
- try {
-        // Envoi direct sans condition bloquante
-        await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'text/plain',
-            },
-            body: JSON.stringify(formData)
-        });
-        
-        console.log('Student Form Data envoyé:', formData);
-        studentForm.reset();
-        showModal('Votre inscription a été enregistrée avec succès.');
-        
-    } catch (error) {
-        console.error('Error:', error);
-        showModal('Une erreur est survenue.');
-    } finally {
-        // Restore button
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalContent;
+    if (cvInput) {
+        cvInput.addEventListener('change', handleCVUpload);
     }
+    
+    if (removeCvBtn) {
+        removeCvBtn.addEventListener('click', removeCV);
+    }
+    
+    // Setup real-time validation
+    setupStudentFormValidation();
 });
 
+function handleCVUpload(e) {
+    const file = e.target.files[0];
+    
+    if (!file) return;
+    
+    // Validate file type
+    if (file.type !== 'application/pdf') {
+        showMessage('Erreur: Seuls les fichiers PDF sont acceptés.', 'error');
+        e.target.value = '';
+        return;
+    }
+    
+    // Validate file size (5MB = 5 * 1024 * 1024 bytes)
+    const maxSize = 5 * 1024 * 1024;
+    if (file.size > maxSize) {
+        showMessage(
+            `Erreur: Le fichier est trop volumineux (${(file.size / 1024 / 1024).toFixed(2)} MB). Maximum: 5 MB. Veuillez utiliser l'Option 2 (lien vers CV) à la place.`,
+            'error'
+        );
+        e.target.value = '';
+        return;
+    }
+    
+    // Store file
+    selectedCVFile = file;
+    
+    // Show file name
+    const fileNameDisplay = document.getElementById('cvFileName');
+    const fileNameText = document.getElementById('cvFileNameText');
+    
+    if (fileNameDisplay && fileNameText) {
+        fileNameText.textContent = `${file.name} (${(file.size / 1024).toFixed(0)} KB)`;
+        fileNameDisplay.classList.remove('hidden');
+    }
+    
+    // Clear CV link if file is uploaded
+    const cvLinkInput = document.getElementById('cvLink');
+    if (cvLinkInput) {
+        cvLinkInput.value = '';
+    }
+}
+
+function removeCV() {
+    selectedCVFile = null;
+    const cvInput = document.getElementById('cv');
+    const fileNameDisplay = document.getElementById('cvFileName');
+    
+    if (cvInput) cvInput.value = '';
+    if (fileNameDisplay) fileNameDisplay.classList.add('hidden');
+}
+
+// Convert file to base64
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
+// ===== PREPARE STUDENT FORM DATA =====
+async function prepareStudentFormData(form, cvFile, cvLink) {
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('🔍 PRÉPARATION DES DONNÉES ÉTUDIANTES');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    
+    const formData = {
+        type: 'etudiant',
+        timestamp: new Date().toLocaleString('fr-FR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        }),
+        nom: form.nom.value.trim(),
+        prenom: form.prenom.value.trim(),
+        email: form.email.value.trim(),
+        telephone: form.telephone.value.trim(),
+        niveau: form.niveau.value,
+        filiere: form.filiere.value,
+        linkedin: form.linkedin.value.trim(),
+        github: form.github?.value.trim() || '',
+        portfolio: form.portfolio?.value.trim() || '',
+        domaines: form.domaines?.value.trim() || '',
+        commentaires: form.commentaires?.value.trim() || '',
+        consentement: form.consentement.checked ? 'Oui' : 'Non'
+    };
+    
+    console.log('📝 Données de base collectées:');
+    console.table(formData);
+    
+    // Handle Type de Poste (checkboxes)
+   // Handle Type de Poste (text input)
+formData.typePoste = form.typePoste?.value.trim() || '';
+    console.log('💼 Type de poste:', formData.typePoste);
+    
+    // Handle CV Upload (Option 1: File)
+    if (cvFile) {
+        try {
+            console.log('📄 Conversion du CV en base64...');
+            const base64CV = await fileToBase64(cvFile);
+            formData.cvData = base64CV;
+            formData.cvFileName = cvFile.name;
+            formData.cvUrl = ''; // Will be generated by Google Apps Script
+            console.log('✅ CV converti:', cvFile.name, '(' + (cvFile.size / 1024).toFixed(2) + ' KB)');
+        } catch (error) {
+            console.error('❌ Erreur conversion CV:', error);
+            throw new Error('Erreur lors du traitement du CV');
+        }
+    } else {
+        formData.cvData = '';
+        formData.cvFileName = '';
+        console.log('⚠️ Pas de fichier CV uploadé');
+    }
+    
+    // Handle CV Link (Option 2: Link for files > 5MB)
+    if (cvLink && !cvFile) {
+        formData.cvUrl = cvLink;
+        formData.cvData = '';
+        formData.cvFileName = '';
+        console.log('🔗 Lien CV fourni:', cvLink);
+    } else if (!cvFile && !cvLink) {
+        formData.cvUrl = '';
+        console.log('⚠️ Pas de lien CV fourni');
+    }
+    
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('📦 DONNÉES FINALES À ENVOYER:');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('Type:', formData.type);
+    console.log('Timestamp:', formData.timestamp);
+    console.log('Nom:', formData.nom);
+    console.log('Prénom:', formData.prenom);
+    console.log('Email:', formData.email);
+    console.log('Téléphone:', formData.telephone);
+    console.log('CV Data:', formData.cvData ? 'BASE64 (' + (formData.cvData.length) + ' chars)' : 'VIDE');
+    console.log('CV FileName:', formData.cvFileName || 'VIDE');
+    console.log('CV URL:', formData.cvUrl || 'VIDE');
+    console.log('LinkedIn:', formData.linkedin);
+    console.log('Niveau:', formData.niveau);
+    console.log('Filière:', formData.filiere);
+    console.log('GitHub:', formData.github || 'VIDE');
+    console.log('Portfolio:', formData.portfolio || 'VIDE');
+    console.log('Type Poste:', formData.typePoste || 'VIDE');
+    console.log('Domaines:', formData.domaines || 'VIDE');
+    console.log('Commentaires:', formData.commentaires || 'VIDE');
+    console.log('Consentement:', formData.consentement);
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    
+    return formData;
+}
+
+// ===== STUDENT FORM VALIDATION =====
+function setupStudentFormValidation() {
+    // Email validation
+    const emailInput = document.getElementById('email');
+    if (emailInput) {
+        emailInput.addEventListener('blur', function() {
+            validateEmail(this.value, this);
+        });
+    }
+    
+    // Phone validation
+    const phoneInput = document.getElementById('telephone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').substring(0, 10);
+        });
+        phoneInput.addEventListener('blur', function() {
+            validatePhone(this.value, this);
+        });
+    }
+    
+    // LinkedIn validation
+    const linkedinInput = document.getElementById('linkedin');
+    if (linkedinInput) {
+        linkedinInput.addEventListener('blur', function() {
+            validateLinkedIn(this.value, this);
+        });
+    }
+    
+    // GitHub validation
+    const githubInput = document.getElementById('github');
+    if (githubInput) {
+        githubInput.addEventListener('blur', function() {
+            if (this.value) validateGitHub(this.value, this);
+        });
+    }
+    
+    // Portfolio validation
+    const portfolioInput = document.getElementById('portfolio');
+    if (portfolioInput) {
+        portfolioInput.addEventListener('blur', function() {
+            if (this.value) validateURL(this.value, this);
+        });
+    }
+    
+    // CV Link validation
+    const cvLinkInput = document.getElementById('cvLink');
+    if (cvLinkInput) {
+        cvLinkInput.addEventListener('blur', function() {
+            if (this.value) validateURL(this.value, this);
+        });
+    }
+    
+    // Comments character limit
+    const commentsInput = document.getElementById('commentaires');
+    if (commentsInput) {
+        commentsInput.addEventListener('input', function() {
+            if (this.value.length > 500) {
+                this.value = this.value.substring(0, 500);
+            }
+        });
+    }
+}
+
+function validateStudentForm(form) {
+    let isValid = true;
+    
+    // Validate email
+    const emailInput = form.email;
+    if (!validateEmail(emailInput.value, emailInput)) {
+        isValid = false;
+    }
+    
+    // Validate phone
+    const phoneInput = form.telephone;
+    if (!validatePhone(phoneInput.value, phoneInput)) {
+        isValid = false;
+    }
+    
+    // Validate LinkedIn
+    const linkedinInput = form.linkedin;
+    if (!validateLinkedIn(linkedinInput.value, linkedinInput)) {
+        isValid = false;
+    }
+    
+    // Validate GitHub (if provided)
+    const githubInput = form.github;
+    if (githubInput && githubInput.value && !validateGitHub(githubInput.value, githubInput)) {
+        isValid = false;
+    }
+    
+    // Validate Portfolio (if provided)
+    const portfolioInput = form.portfolio;
+    if (portfolioInput && portfolioInput.value && !validateURL(portfolioInput.value, portfolioInput)) {
+        isValid = false;
+    }
+    
+    // Validate CV Link (if provided)
+    const cvLinkInput = form.cvLink;
+    if (cvLinkInput && cvLinkInput.value && !validateURL(cvLinkInput.value, cvLinkInput)) {
+        isValid = false;
+    }
+    
+    // Validate consent
+    const consentInput = form.consentement;
+    if (!consentInput.checked) {
+        showMessage('Vous devez accepter le partage de vos données avec les entreprises partenaires.', 'error');
+        consentInput.focus();
+        isValid = false;
+    }
+    
+    return isValid;
+}
+
+function validateEmail(email, inputElement) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValid = emailRegex.test(email);
+    
+    if (!isValid && email) {
+        showFieldError(inputElement, 'Format email invalide');
+        return false;
+    } else {
+        clearFieldError(inputElement);
+        return true;
+    }
+}
+
+function validatePhone(phone, inputElement) {
+    const phoneRegex = /^[0-9]{10}$/;
+    const isValid = phoneRegex.test(phone);
+    
+    if (!isValid && phone) {
+        showFieldError(inputElement, 'Le numéro doit contenir 10 chiffres (ex: 0555123456)');
+        return false;
+    } else {
+        clearFieldError(inputElement);
+        return true;
+    }
+}
+
+function validateLinkedIn(url, inputElement) {
+    const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[\w-]+\/?$/i;
+    const isValid = linkedinRegex.test(url);
+    
+    if (!isValid && url) {
+        showFieldError(inputElement, 'Format LinkedIn invalide. Ex: https://linkedin.com/in/votre-profil');
+        return false;
+    } else {
+        clearFieldError(inputElement);
+        return true;
+    }
+}
+
+function validateGitHub(url, inputElement) {
+    const githubRegex = /^https?:\/\/(www\.)?github\.com\/[\w-]+\/?$/i;
+    const isValid = githubRegex.test(url);
+    
+    if (!isValid && url) {
+        showFieldError(inputElement, 'Format GitHub invalide. Ex: https://github.com/votre-profil');
+        return false;
+    } else {
+        clearFieldError(inputElement);
+        return true;
+    }
+}
+
+function validateURL(url, inputElement) {
+    try {
+        new URL(url);
+        clearFieldError(inputElement);
+        return true;
+    } catch (e) {
+        showFieldError(inputElement, 'URL invalide');
+        return false;
+    }
+}
+
+function showFieldError(inputElement, message) {
+    inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+    inputElement.classList.remove('border-gray-300', 'focus:ring-accent', 'focus:border-accent');
+    
+    // Remove existing error message
+    const existingError = inputElement.parentElement.querySelector('.field-error');
+    if (existingError) existingError.remove();
+    
+    // Add error message
+    const errorMsg = document.createElement('p');
+    errorMsg.className = 'field-error text-xs text-red-500 mt-1';
+    errorMsg.textContent = message;
+    inputElement.parentElement.appendChild(errorMsg);
+}
+
+function clearFieldError(inputElement) {
+    inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+    inputElement.classList.add('border-gray-300', 'focus:ring-accent', 'focus:border-accent');
+    
+    const errorMsg = inputElement.parentElement.querySelector('.field-error');
+    if (errorMsg) errorMsg.remove();
+}
+
+// ===== SHOW MESSAGE FUNCTION (for inline messages) =====
+function showMessage(message, type = 'success') {
+    const messageDiv = document.getElementById('formMessage');
+    
+    if (!messageDiv) {
+        // Fallback to modal if formMessage div doesn't exist
+        showModal(message);
+        return;
+    }
+    
+    messageDiv.className = 'mt-4 p-4 rounded-lg';
+    
+    if (type === 'success') {
+        messageDiv.classList.add('bg-green-100', 'border', 'border-green-400', 'text-green-700');
+        messageDiv.innerHTML = `
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>${message}</span>
+            </div>
+        `;
+    } else {
+        messageDiv.classList.add('bg-red-100', 'border', 'border-red-400', 'text-red-700');
+        messageDiv.innerHTML = `
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                </svg>
+                <span>${message}</span>
+            </div>
+        `;
+    }
+    
+    messageDiv.classList.remove('hidden');
+    
+    // Scroll to message
+    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // Auto-hide after 8 seconds for success messages
+    if (type === 'success') {
+        setTimeout(() => {
+            messageDiv.classList.add('hidden');
+        }, 8000);
+    }
+}
 // ===== SCROLL ANIMATIONS =====
 const observerOptions = {
     threshold: 0.1,
@@ -378,4 +791,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 console.log('Career Summit 2026 - Website Loaded');
-console.log('REMINDER: Configure Google Sheets URL in GOOGLE_SCRIPT_URL variable');
+
+
