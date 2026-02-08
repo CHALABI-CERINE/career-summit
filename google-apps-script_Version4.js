@@ -121,17 +121,21 @@ function handleEtudiantSubmission(ss, data) {
     }
     
     // Append data to sheet
+
     sheet.appendRow([
       data.timestamp || new Date().toLocaleString('fr-FR'),
       data.nom || '',
       data.prenom || '',
       data.email || '',
       data.telephone || '',
+      data.matricule || '',           // ⭐ NOUVEAU
+      data.universite || '',          // ⭐ NOUVEAU
       cvUrl || '',                    // CV URL (from Drive upload)
       cvLinkFromForm || '',           // CV Link (external link if file > 5MB)
       data.linkedin || '',
       data.niveau || '',
       data.filiere || '',
+      data.carteNationale || '',      // ⭐ NOUVEAU
       data.github || '',
       data.portfolio || '',
       data.typePoste || '',
@@ -281,17 +285,19 @@ Career Summit 2026 - Project Initiative USTHB
 Nouvelle inscription étudiant reçue:
 
 👤 INFORMATIONS PERSONNELLES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━���━━━━━━━━━
 Nom: ${data.nom || 'N/A'}
 Prénom: ${data.prenom || 'N/A'}
 Email: ${data.email || 'N/A'}
 Téléphone: ${data.telephone || 'N/A'}
+Carte Nationale: ${data.carteNationale || 'N/A'}    ⭐ NOUVEAU
 
 🎓 INFORMATIONS ACADÉMIQUES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Matricule: ${data.matricule || 'N/A'}              ⭐ NOUVEAU
+Université: ${data.universite || 'N/A'}            ⭐ NOUVEAU
 Niveau: ${data.niveau || 'N/A'}
 Filière: ${data.filiere || 'N/A'}
-
 🔗 PROFILS PROFESSIONNELS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 LinkedIn: ${data.linkedin || 'N/A'}

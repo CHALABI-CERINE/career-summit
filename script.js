@@ -1,6 +1,6 @@
 
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwQJHVOzHtno8oVwZxXTnCpgzphUckctq5rp85rzQgR4ftHW7qBhHWw3C8CPOE0l1ukAQ/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQqsKfL6T3RuFoxgB3raF4YEB06X8F18evJKc2d41MGJFwzYbjXlGDb0uKKiVrIGzZ5g/exec';
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
@@ -455,7 +455,12 @@ async function prepareStudentFormData(form, cvFile, cvLink) {
         portfolio: form.portfolio?.value.trim() || '',
         domaines: form.domaines?.value.trim() || '',
         commentaires: form.commentaires?.value.trim() || '',
-        consentement: form.consentement.checked ? 'Oui' : 'Non'
+        consentement: form.consentement.checked ? 'Oui' : 'Non',
+        matricule: form.matricule.value.trim(),
+               universite: form.universite.value === 'Autre' 
+            ? (form.autreUniversite?.value.trim() || 'Autre') 
+            : form.universite.value,
+        carteNationale: form.carteNationale.value.trim(),
     };
     
     console.log('📝 Données de base collectées:');
@@ -542,7 +547,16 @@ function setupStudentFormValidation() {
             validatePhone(this.value, this);
         });
     }
-    
+        // Carte Nationale validation
+    const carteInput = document.getElementById('carteNationale');
+    if (carteInput) {
+        carteInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').substring(0, 18);
+        });
+        carteInput.addEventListener('blur', function() {
+            validateCarteNationale(this.value, this);
+        });
+    }
     // LinkedIn validation
     const linkedinInput = document.getElementById('linkedin');
     if (linkedinInput) {
@@ -601,6 +615,11 @@ function validateStudentForm(form) {
         isValid = false;
     }
     
+        // Validate Carte Nationale
+    const carteInput = form.carteNationale;
+    if (!validateCarteNationale(carteInput.value, carteInput)) {
+        isValid = false;
+    }
     // Validate LinkedIn
     const linkedinInput = form.linkedin;
     if (!validateLinkedIn(linkedinInput.value, linkedinInput)) {
@@ -655,6 +674,18 @@ function validatePhone(phone, inputElement) {
     
     if (!isValid && phone) {
         showFieldError(inputElement, 'Le numéro doit contenir 10 chiffres (ex: 0555123456)');
+        return false;
+    } else {
+        clearFieldError(inputElement);
+        return true;
+    }
+}
+function validateCarteNationale(carte, inputElement) {
+    const carteRegex = /^[0-9]{18}$/;
+    const isValid = carteRegex.test(carte);
+    
+    if (!isValid && carte) {
+        showFieldError(inputElement, 'Le numéro de carte nationale doit contenir exactement 18 chiffres');
         return false;
     } else {
         clearFieldError(inputElement);
@@ -807,9 +838,25 @@ function toggleAutreFiliere() {
     }
 }
 
+// ===== TOGGLE AUTRE UNIVERSITÉ =====
+function toggleAutreUniversite() {
+    const universiteSelect = document.getElementById('universite');
+    const autreDiv = document.getElementById('autreUniversiteDiv');
+    const autreInput = document.getElementById('autreUniversite');
+    
+    if (universiteSelect.value === 'Autre') {
+        autreDiv.classList.remove('hidden');
+        autreInput.setAttribute('required', 'required');
+    } else {
+        autreDiv.classList.add('hidden');
+        autreInput.removeAttribute('required');
+        autreInput.value = ''; // Clear the value when hidden
+    }
+}
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     toggleAutreFiliere();
+    toggleAutreUniversite(); // AJOUTER CETTE LIGNE
 });
 // ===== FADE IN ANIMATIONS =====
 document.addEventListener('DOMContentLoaded', () => {
