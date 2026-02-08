@@ -297,7 +297,7 @@ if (studentForm) {
         const cvLink = document.getElementById('cvLink')?.value.trim() || '';
 
 
-        
+
         const submitBtn = document.getElementById('submitBtn');
         const submitBtnText = document.getElementById('submitBtnText');
         const originalContent = submitBtnText.textContent;
@@ -447,7 +447,9 @@ async function prepareStudentFormData(form, cvFile, cvLink) {
         email: form.email.value.trim(),
         telephone: form.telephone.value.trim(),
         niveau: form.niveau.value,
-        filiere: form.filiere.value,
+                filiere: form.filiere.value === 'Autre' 
+            ? (form.autreFiliere?.value.trim() || 'Autre') 
+            : form.filiere.value,
         linkedin: form.linkedin.value.trim(),
         github: form.github?.value.trim() || '',
         portfolio: form.portfolio?.value.trim() || '',
@@ -789,6 +791,26 @@ document.querySelectorAll('.card-lift').forEach(card => {
     animateOnScroll.observe(card);
 });
 
+// ===== TOGGLE AUTRE FILIÈRE =====
+function toggleAutreFiliere() {
+    const filiereSelect = document.getElementById('filiere');
+    const autreDiv = document.getElementById('autreFilierDiv');
+    const autreInput = document.getElementById('autreFiliere');
+    
+    if (filiereSelect.value === 'Autre') {
+        autreDiv.classList.remove('hidden');
+        autreInput.setAttribute('required', 'required');
+    } else {
+        autreDiv.classList.add('hidden');
+        autreInput.removeAttribute('required');
+        autreInput.value = ''; // Clear the value when hidden
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    toggleAutreFiliere();
+});
 // ===== FADE IN ANIMATIONS =====
 document.addEventListener('DOMContentLoaded', () => {
     const fadeElements = document.querySelectorAll('.animate-fade-in');

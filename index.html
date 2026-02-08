@@ -733,6 +733,7 @@
                         </div>
 
                         <!-- Filière -->
+                                               <!-- Filière -->
                         <div>
                             <label for="filiere" class="block text-sm font-medium text-gray-700 mb-2">
                                 Filière <span class="text-red-500">*</span>
@@ -742,6 +743,7 @@
                                 name="filiere" 
                                 required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition"
+                                onchange="toggleAutreFiliere()"
                             >
                                 <option value="">Sélectionnez votre filière</option>
                                 <option value="Informatique">Informatique</option>
@@ -758,6 +760,21 @@
                                 <option value="Automatique">Automatique</option>
                                 <option value="Autre">Autre</option>
                             </select>
+                        </div>
+
+                        <!-- Autre Filière (Hidden by default) -->
+                        <div id="autreFilierDiv" class="hidden">
+                            <label for="autreFiliere" class="block text-sm font-medium text-gray-700 mb-2">
+                                Précisez votre filière <span class="text-red-500">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="autreFiliere" 
+                                name="autreFiliere"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition"
+                                placeholder="Ex: Génie Biomédical, Sciences Politiques, etc."
+                            >
+                            <p class="text-xs text-gray-500 mt-1">Veuillez préciser votre spécialité exacte</p>
                         </div>
                     </div>
                 </div>
@@ -920,15 +937,16 @@
     </div>
 
     <!-- Domaines d'intérêt (TEXT INPUT) -->
-        <!-- Domaines d'intérêt (TEXT INPUT) -->
+     <!-- Domaines d'intérêt (TEXT INPUT) - REQUIRED -->
     <div>
         <label for="domaines" class="block text-sm font-medium text-gray-700 mb-2">
-            Domaines d'intérêt ou Spécialité
+            Domaines d'intérêt ou Spécialité <span class="text-red-500">*</span>
         </label>
         <input 
             type="text" 
             id="domaines" 
             name="domaines"
+            required
             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition"
             placeholder="Ex: Data Science, Cybersécurité, Développement Web, Réseaux et Télécommunications..."
         >
@@ -936,7 +954,6 @@
             💡 Vous pouvez indiquer votre spécialité de la faculté OU le domaine dans lequel vous souhaitez travailler (séparez par des virgules)
         </p>
     </div>
-</div>
                 <!-- Additional Comments -->
                 <div class="border-b border-gray-200 pb-6">
                     <h3 class="text-xl font-semibold text-navy-900 mb-4 flex items-center">
