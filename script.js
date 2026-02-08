@@ -281,15 +281,22 @@ if (studentForm) {
             return;
         }
         
-        // Check CV (either file upload or link required)
+        // // Check CV (either file upload or link required)
+        // const cvFile = selectedCVFile;
+        // const cvLink = document.getElementById('cvLink')?.value.trim() || '';
+        
+        // if (!cvFile && !cvLink) {
+        //     showMessage('Veuillez télécharger votre CV ou fournir un lien vers votre CV.', 'error');
+        //     document.getElementById('cv')?.focus();
+        //     return;
+        // }
+        
+        // ✅ NOUVEAU CODE - CV OPTIONNEL
+        // Get CV data (optional)
         const cvFile = selectedCVFile;
         const cvLink = document.getElementById('cvLink')?.value.trim() || '';
-        
-        if (!cvFile && !cvLink) {
-            showMessage('Veuillez télécharger votre CV ou fournir un lien vers votre CV.', 'error');
-            document.getElementById('cv')?.focus();
-            return;
-        }
+
+
         
         const submitBtn = document.getElementById('submitBtn');
         const submitBtnText = document.getElementById('submitBtnText');
