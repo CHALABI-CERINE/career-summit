@@ -1,6 +1,6 @@
 
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQqsKfL6T3RuFoxgB3raF4YEB06X8F18evJKc2d41MGJFwzYbjXlGDb0uKKiVrIGzZ5g/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzdkR37pMAJrSWnYsN2TeZGyeQaC8wCzDi2wqAXy1lPDCsvuG6HywoGKTyF6yAQ3H5IOQ/exec';
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');

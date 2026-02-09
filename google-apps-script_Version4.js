@@ -1,5 +1,5 @@
 
-const CV_FOLDER_ID = '1mugJDW6cH78CqBiiKEGjN_VDuPzbnPdj'; // Leave empty to auto-create, or paste your folder ID here
+const CV_FOLDER_ID = '1iCDWNmGZz7s-w5UhTO7DXDOqXijegj1J'; // Leave empty to auto-create, or paste your folder ID here
 
 // Optional: Email for notifications
 const ADMIN_EMAIL = 'chalabicerinemaria@gmail.com';
@@ -238,98 +238,6 @@ function createCVFolder() {
   }
 }
 
-// =====================================================
-// SEND EMAIL NOTIFICATIONS (Optional)
-// =====================================================
-function sendNotificationEmail(type, data) {
-  if (!SEND_NOTIFICATIONS || !ADMIN_EMAIL) {
-    return;
-  }
-  
-  try {
-    if (type === 'entreprise') {
-      const subject = '🏢 Nouvelle demande entreprise - ' + (data.entreprise || 'N/A');
-      const body = `
-Nouvelle demande de participation reçue:
-
-📊 INFORMATIONS ENTREPRISE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Entreprise: ${data.entreprise || 'N/A'}
-Secteur: ${data.secteur || 'N/A'}
-Représentant: ${data.representant || 'N/A'}
-Fonction: ${data.fonction || 'N/A'}
-
-📧 CONTACT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Email: ${data.email || 'N/A'}
-Téléphone: ${data.telephone || 'N/A'}
-
-📋 DÉTAILS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Type de participation: ${data.participation || 'N/A'}
-Format CV préféré: ${data.cvFormat || 'N/A'}
-Message: ${data.message || 'Aucun'}
-
-⏰ Date d'inscription: ${data.timestamp || 'N/A'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Career Summit 2026 - Project Initiative USTHB
-      `;
-      
-      MailApp.sendEmail(ADMIN_EMAIL, subject, body);
-      Logger.log('Notification email sent for company: ' + data.entreprise);
-      
-    } else if (type === 'etudiant') {
-      const subject = '👨‍🎓 Nouvelle inscription étudiant - ' + (data.nom || '') + ' ' + (data.prenom || '');
-      const body = `
-Nouvelle inscription étudiant reçue:
-
-👤 INFORMATIONS PERSONNELLES
-━━━━━━━━━━━━━━━━━━━━━━���━━━━━━━━━
-Nom: ${data.nom || 'N/A'}
-Prénom: ${data.prenom || 'N/A'}
-Email: ${data.email || 'N/A'}
-Téléphone: ${data.telephone || 'N/A'}
-Carte Nationale: ${data.carteNationale || 'N/A'}    ⭐ NOUVEAU
-
-🎓 INFORMATIONS ACADÉMIQUES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Matricule: ${data.matricule || 'N/A'}              ⭐ NOUVEAU
-Université: ${data.universite || 'N/A'}            ⭐ NOUVEAU
-Niveau: ${data.niveau || 'N/A'}
-Filière: ${data.filiere || 'N/A'}
-🔗 PROFILS PROFESSIONNELS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-LinkedIn: ${data.linkedin || 'N/A'}
-GitHub: ${data.github || 'Non fourni'}
-Portfolio: ${data.portfolio || 'Non fourni'}
-
-💼 PRÉFÉRENCES
-━━━━━━━━━━━━━━━━━━━━━━━━���━━━━━━━
-Type de poste: ${data.typePoste || 'Non spécifié'}
-Domaines d'intérêt: ${data.domaines || 'Non spécifié'}
-
-📝 COMMENTAIRES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-${data.commentaires || 'Aucun'}
-
-✅ Consentement: ${data.consentement || 'Non'}
-
-⏰ Date d'inscription: ${data.timestamp || 'N/A'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Career Summit 2026 - Project Initiative USTHB
-      `;
-      
-      MailApp.sendEmail(ADMIN_EMAIL, subject, body);
-      Logger.log('Notification email sent for student: ' + data.nom + ' ' + data.prenom);
-    }
-    
-  } catch (error) {
-    Logger.log('Error sending notification email: ' + error);
-    // Don't throw error - email is optional
-  }
-}
 
 // =====================================================
 // UTILITY FUNCTIONS
