@@ -1,8 +1,8 @@
 
-const CV_FOLDER_ID = '1iCDWNmGZz7s-w5UhTO7DXDOqXijegj1J'; // Leave empty to auto-create, or paste your folder ID here
+const CV_FOLDER_ID = '1dplFV9b4nd-eCnwLAwCngIoN7ydEIjvT'; // Leave empty to auto-create, or paste your folder ID here
 
 // Optional: Email for notifications
-const ADMIN_EMAIL = 'chalabicerinemaria@gmail.com';
+const ADMIN_EMAIL = 'pi.community20@gmail.com';
 const SEND_NOTIFICATIONS = false; // Set to true to enable email notifications
 
 // =====================================================
