@@ -269,28 +269,7 @@ standForm.addEventListener('submit', async (e) => {
 });
 
 // ===== FORM SUBMISSION - ÉTUDIANTS =====
-// const studentForm = document.getElementById('studentForm'); // Changed ID
-// ===== FORM SUBMISSION - ÉTUDIANTS =====
-const studentForm = document.getElementById('studentForm');
-
-if (studentForm) {
-    // DISABLE STUDENT REGISTRATIONS
-    studentForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        showMessage('❌ Les inscriptions des étudiants sont fermées.', 'error');
-        return false;
-    });
-    
-    // Disable all form inputs
-    const formInputs = studentForm.querySelectorAll('input, select, textarea, button');
-    formInputs.forEach(input => {
-        if (input.type !== 'button') {
-            input.disabled = true;
-            input.style.backgroundColor = '#f3f4f6';
-            input.style.cursor = 'not-allowed';
-        }
-    });
-}
+const studentForm = document.getElementById('studentForm'); // Changed ID
 
 if (studentForm) {
     studentForm.addEventListener('submit', async (e) => {
